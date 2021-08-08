@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  POC: SNS and Lambda consumers
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 10
+
+Resources:
+  TopicEventStatus:
+    Type: AWS::SNS::Topic
+    Properties:
+      DisplayName: !Sub 'eventStatus'
+      TopicName: !Sub 'eventStatus'
+      Subscription:
+        - Protocol: lambda
+          Endpoint: !GetAtt ConsumerEventA.Arn
+  ConsumerEventA:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./src/consumer-event-a/
+      Handler: consumer-event-a::ConsumerEventA.Function::FunctionHandler
+      MemorySize: 256
+      Runtime: dotnetcore3.1
+      Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
+        Variables:
+          PARAM1: VALUE
+  ConsumerEventAInvokePermission:
+    Type: 'AWS::Lambda::Permission'
+    Properties:
+      Action: 'lambda:InvokeFunction'
+      FunctionName: !Ref ConsumerEventA
+      Principal: sns.amazonaws.com   
+  TopicEventStatusPolicy:
+    Type: 'AWS::SNS::TopicPolicy'
+    Properties:
+      Topics:
+        - !Ref TopicEventStatus
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action: 'sns:Publish'
+            Resource: !Ref TopicEventStatus
+            Principal:
+              AWS: '*'
+            Condition:
+              ArnLike:
+                AWS:SourceArn: !Sub 'arn:aws:*:*:${AWS::AccountId}:*'
