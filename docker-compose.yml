@@ -1,0 +1,33 @@
+version: '3'
+services:
+  localstack:
+    image: "localstack/localstack:latest"
+    container_name: "localstack-compose-sample"
+    environment: 
+      - SERVICES=dynamodb, sqs, sns
+      - DEFAULT_REGION=us-east-1
+      - DEBUG=0
+      - USE_SSL=false
+    ports:
+      - "4569:4569"
+      - "4575:4575"
+      - "4566:4566"
+
+  aws-cli:
+    image: mesosphere/aws-cli
+    container_name: "awsCli-compose-sample"
+    environment: 
+      - AWS_ACCESS_KEY_ID=dummyaccess
+      - AWS_SECRET_ACCESS_KEY=dummysecret
+      - AWS_DEFAULT_REGION=us-east-1
+    volumes:
+      - ./files/dynamodb:/files
+    entrypoint: /bin/sh -c
+    command: >
+      "
+        aws --no-verify-ssl dynamodb create-table --cli-input-json file:///files/sampleTable.json --endpoint-url=http://localstack:4566
+        aws --no-verify-ssl --endpoint-url=http://localstack:4566 --region=us-east-1 sqs create-queue --queue-name sampleQueue.fifo --attributes FifoQueue=true
+        aws --no-verify-ssl --endpoint-url=http://localstack:4566 --region=us-east-1 sns create-topic --name topic-consumer-1
+      "
+    depends_on:
+      - localstack

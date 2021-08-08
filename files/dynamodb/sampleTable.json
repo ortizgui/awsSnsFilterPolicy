@@ -1,0 +1,19 @@
+{
+    "TableName": "sampleTable",
+    "KeySchema": [
+      {
+        "KeyType": "HASH",
+        "AttributeName": "id"
+      }
+    ],
+    "AttributeDefinitions": [
+      {
+        "AttributeName": "id",
+        "AttributeType": "S"
+      }
+    ],
+    "ProvisionedThroughput": {
+      "ReadCapacityUnits": 10,
+      "WriteCapacityUnits": 10
+    }
+  }
