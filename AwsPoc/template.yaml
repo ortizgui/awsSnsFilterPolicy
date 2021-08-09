@@ -13,15 +13,6 @@ Resources:
     Type: AWS::SNS::Topic
     Properties:
       TopicName: eventStatus
-  # TopicEventSubscription:
-  #   Type: AWS::SNS::Subscription
-  #   Properties:
-  #     TopicArn: !Ref TopicEventStatus
-  #     Protocol: lambda
-  #     Endpoint: !GetAtt ConsumerEventA.Arn
-  #     FilterPolicy:
-  #       schema:
-  #         - schema_a
   ConsumerEventA:
     Type: AWS::Serverless::Function
     Properties:
