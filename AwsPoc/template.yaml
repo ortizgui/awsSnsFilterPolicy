@@ -34,7 +34,7 @@ Resources:
     Properties:
       FunctionName: Consumer_EventB
       CodeUri: ./src/consumer-event-b/
-      Handler: consumer-event-b::ConsumerEventA.Function::FunctionHandler
+      Handler: consumer-event-b::ConsumerEventB.Function::FunctionHandler
       MemorySize: 256
       Runtime: dotnetcore3.1
       Events:
