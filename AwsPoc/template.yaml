@@ -29,9 +29,22 @@ Resources:
             FilterPolicy:
               schema:
                 - schema_a
-      Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
-        Variables:
-          PARAM1: VALUE
+  ConsumerEventB:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: Consumer_EventB
+      CodeUri: ./src/consumer-event-b/
+      Handler: consumer-event-b::ConsumerEventA.Function::FunctionHandler
+      MemorySize: 256
+      Runtime: dotnetcore3.1
+      Events:
+        SnsSubscription: 
+          Type: SNS
+          Properties:
+            Topic: !Ref TopicEventStatus
+            FilterPolicy:
+              schema:
+                - schema_b
   TopicEventStatusPolicy:
     Type: 'AWS::SNS::TopicPolicy'
     Properties:

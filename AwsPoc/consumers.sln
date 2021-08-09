@@ -1,7 +1,5 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld", "src\HelloWorld\HelloWorld.csproj", "{D4F4A304-0998-43B0-B825-2DE150F81956}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{607A009E-5C0D-4782-93A3-401A93086157}"
 ProjectSection(SolutionItems) = preProject
 	.gitignore = .gitignore
@@ -10,15 +8,23 @@ ProjectSection(SolutionItems) = preProject
 	template.yaml = template.yaml
 EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "consumer-event-a", "src\consumer-event-a\consumer-event-a.csproj", "{D170D3EE-8082-487D-863A-C3B16A07B255}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "consumer-event-b", "src\consumer-event-b\consumer-event-b.csproj", "{5FE965A5-4700-4689-B3A9-98DCDF64B037}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D4F4A304-0998-43B0-B825-2DE150F81956}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D4F4A304-0998-43B0-B825-2DE150F81956}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D4F4A304-0998-43B0-B825-2DE150F81956}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D4F4A304-0998-43B0-B825-2DE150F81956}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D170D3EE-8082-487D-863A-C3B16A07B255}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D170D3EE-8082-487D-863A-C3B16A07B255}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D170D3EE-8082-487D-863A-C3B16A07B255}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D170D3EE-8082-487D-863A-C3B16A07B255}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FE965A5-4700-4689-B3A9-98DCDF64B037}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FE965A5-4700-4689-B3A9-98DCDF64B037}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FE965A5-4700-4689-B3A9-98DCDF64B037}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FE965A5-4700-4689-B3A9-98DCDF64B037}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
