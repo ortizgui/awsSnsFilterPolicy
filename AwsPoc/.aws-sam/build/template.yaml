@@ -10,16 +10,20 @@ Resources:
   TopicEventStatus:
     Type: AWS::SNS::Topic
     Properties:
-      DisplayName:
-        Fn::Sub: eventStatus
-      TopicName:
-        Fn::Sub: eventStatus
-      Subscription:
-      - Protocol: lambda
-        Endpoint:
-          Fn::GetAtt:
-          - ConsumerEventA
-          - Arn
+      TopicName: eventStatus
+  TopicEventSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      TopicArn:
+        Ref: TopicEventStatus
+      Protocol: lambda
+      Endpoint:
+        Fn::GetAtt:
+        - ConsumerEventA
+        - Arn
+      FilterPolicy:
+        schema:
+        - schema_a
   ConsumerEventA:
     Type: AWS::Serverless::Function
     Properties:
@@ -30,13 +34,6 @@ Resources:
       Environment:
         Variables:
           PARAM1: VALUE
-  ConsumerEventAInvokePermission:
-    Type: AWS::Lambda::Permission
-    Properties:
-      Action: lambda:InvokeFunction
-      FunctionName:
-        Ref: ConsumerEventA
-      Principal: sns.amazonaws.com
   TopicEventStatusPolicy:
     Type: AWS::SNS::TopicPolicy
     Properties:
