@@ -38,5 +38,5 @@ msbuild.wrn
 .vs/
 
 #AWS
-/.aws-sam/
-/package.yml
+.aws-sam
+package.yml
