@@ -11,19 +11,6 @@ Resources:
     Type: AWS::SNS::Topic
     Properties:
       TopicName: eventStatus
-  TopicEventSubscription:
-    Type: AWS::SNS::Subscription
-    Properties:
-      TopicArn:
-        Ref: TopicEventStatus
-      Protocol: lambda
-      Endpoint:
-        Fn::GetAtt:
-        - ConsumerEventA
-        - Arn
-      FilterPolicy:
-        schema:
-        - schema_a
   ConsumerEventA:
     Type: AWS::Serverless::Function
     Properties:
@@ -31,6 +18,15 @@ Resources:
       Handler: consumer-event-a::ConsumerEventA.Function::FunctionHandler
       MemorySize: 256
       Runtime: dotnetcore3.1
+      Events:
+        SnsSubscription:
+          Type: SNS
+          Properties:
+            Topic:
+              Ref: TopicEventStatus
+            FilterPolicy:
+              schema:
+              - schema_a
       Environment:
         Variables:
           PARAM1: VALUE
