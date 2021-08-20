@@ -40,3 +40,4 @@ msbuild.wrn
 #AWS
 .aws-sam
 package.yml
+file:*
