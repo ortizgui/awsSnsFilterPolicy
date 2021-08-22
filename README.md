@@ -7,6 +7,7 @@ POC for discovery SNS with Filter Policy
 * [SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
 * [.NET Core](https://www.microsoft.com/net/download)
 * [AWS CLI](https://aws.amazon.com/cli/)
+* [Node.JS 14.x](https://nodejs.org/en/download/)
 
 ## Goals
 
