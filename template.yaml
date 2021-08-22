@@ -51,7 +51,7 @@ Resources:
       FunctionName: Consumer_EventC
       Description: A Lambda function that logs the payload of messages sent to an associated SNS topic.
       Runtime: nodejs14.x
-      Handler: ./src/consumer-event-c/sns-payload-logger.snsPayloadLoggerHandler
+      Handler: ./src/consumer-event-c/src/handler/snsPayloadLogger.handler
       Events:
         SNSTopicEvent:
           Type: SNS
