@@ -38,3 +38,6 @@ After completing the tests, remove the created objects from your account by runn
 ```
 aws cloudformation delete-stack --stack-name snsPoc
 ```
+
+## References
+> [Designing durable serverless apps with DLQs for Amazon SNS, Amazon SQS, AWS Lambda](https://aws.amazon.com/blogs/compute/designing-durable-serverless-apps-with-dlqs-for-amazon-sns-amazon-sqs-aws-lambda/)

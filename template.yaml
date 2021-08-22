@@ -45,6 +45,23 @@ Resources:
             FilterPolicy:
               schema:
                 - schema_b
+  ConsumerEventC:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: Consumer_EventC
+      Description: A Lambda function that logs the payload of messages sent to an associated SNS topic.
+      Runtime: nodejs14.x
+      Handler: ./src/consumer-event-c/sns-payload-logger.snsPayloadLoggerHandler
+      Events:
+        SNSTopicEvent:
+          Type: SNS
+          Properties:
+            Topic: !Ref TopicEventStatus
+            FilterPolicy:
+              schema:
+                - schema_c
+      MemorySize: 128
+      Timeout: 100
   TopicEventStatusPolicy:
     Type: 'AWS::SNS::TopicPolicy'
     Properties:

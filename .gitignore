@@ -41,3 +41,4 @@ msbuild.wrn
 .aws-sam
 package.yml
 file:*
+deploy_aws.sh
